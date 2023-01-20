@@ -1,4 +1,5 @@
 def fill_first_row(matrix: list, index: int = 0, edits: int = 0) -> list:
+    '''Fill the first row of memory matrix'''
     row: list = matrix[0]
     if index < len(row):
         matrix[0][index] = edits
@@ -7,6 +8,7 @@ def fill_first_row(matrix: list, index: int = 0, edits: int = 0) -> list:
         return matrix
 
 def fill_first_column(matrix: list, index: int = 0, edits: int = 0) -> list:
+    '''Fill the first column of memory matrix'''
     if index < len(matrix):
         matrix[index][0] = edits
         return fill_first_column(matrix, index+1, edits+1)
@@ -14,6 +16,7 @@ def fill_first_column(matrix: list, index: int = 0, edits: int = 0) -> list:
         return matrix
 
 def edit_distance(input_word: str, target_word: str):
+    '''Calculate the distance between input_word and target_word'''
     N_input = len(input_word)+1
     N_target = len(target_word)+1
     cache = [[float("inf")]*N_input for _ in range(N_target)]
@@ -24,6 +27,12 @@ def edit_distance(input_word: str, target_word: str):
 
 def edit_distance_iteration(input_word: str, target_word: str, cache: list,
     input_index: int = 1, target_index: int = 1):
+    '''Iterate through the memory matrix for the following behaviours: 
+        - add another letter to input_word 
+        - remove the current letter from input_word
+        - change the current letter form the input_word in order to match 
+        target_word
+    '''
     N_input = len(input_word)+1
     N_target = len(target_word)+1
     if input_index < N_input and target_index < N_target:
